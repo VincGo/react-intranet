@@ -64,6 +64,11 @@ module.exports = {
         error: 1,
         message: `Field 'email' must be a valid RFC email`,
       });
+    else if (COLLABORATEURS.some((c) => c.email === req.body.email))
+        return res.status(400).json({
+            error: 1,
+            message: `Someone with email '${req.body.email}' already exists!`,
+        });
 
     if (!req.body.phone)
       return res.json({
@@ -72,7 +77,7 @@ module.exports = {
       });
 
     if (!req.body.birthdate)
-      return res.status(400).cjson({
+      return res.status(400).json({
         error: 1,
         message: `Field 'birthdate' must be present`,
       });

@@ -1,19 +1,24 @@
-import logo from './logo.svg';
+import Navbar from './components/Navbar';
+import Home from './views/Home';
+import List from './views/List';
+import Create from './views/Create';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Edit from "./views/Edit";
 
 function App() {
-  return (
-    <div className='bg-indigo-900 text-white min-h-screen flex flex-col justify-center'>
-      <header className='text-center'>
-        <img src={logo} alt='logo' className='m-auto max-w-2xl' />
-        <p className='text-xl'>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a className='text-lg' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <ToastContainer />
+            <Navbar />
+
+            <Route path='/' component={Home} exact />
+            <Route path='/list' component={List} />
+            <Route path='/create' component={Create} />
+            <Route path={"/edit/:id"} component={Edit}/>
+        </Router>
+    );
 }
 
 export default App;
